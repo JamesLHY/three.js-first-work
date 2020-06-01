@@ -6,25 +6,23 @@
 </head>
 <body>
 <script src="https://cdn.bootcdn.net/ajax/libs/three.js/100/three.js"></script>
-<script>var renderer = new THREE.WebGLRenderer();
+<script>//设置场景
+var renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 var camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 500);
 camera.position.set(0, 0, 100);
 camera.lookAt(0, 0, 0);
-var scene = new THREE.Scene();
-var material = new THREE.LineBasicMaterial({
-  color: 0xFFB6C1
+var scene = new THREE.Scene(); //物体
+
+console.log(Math.random(1 - 2));
+var material = new THREE.MeshBasicMaterial({
+  color: Math.random() * 0xffffff
 });
-var points = [];
-points.push(new THREE.Vector2(20, -20));
-points.push(new THREE.Vector2(-20, 20));
-points.push(new THREE.Vector2(-20, -20));
-points.push(new THREE.Vector2(20, -20));
-var geometry = new THREE.BufferGeometry().setFromPoints(points);
+var geometry = new THREE.BoxBufferGeometry(10, 10, 10);
 renderer.render(scene, camera);
 var cube = new THREE.Mesh(geometry, material);
-scene.add(cube);
+scene.add(cube); //动作
 
 var animate = function animate() {
   requestAnimationFrame(animate);
